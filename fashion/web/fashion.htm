@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("button").click(function() {
+            $.getJSON("http://localhost:5000/fashion")
+            .done(function(data) {
+                $("p").append(status + " ");
+                $.each(result, function(i, title){
+                    $("p").append(title + " ");
+                });
+            })
+            .fail(function( jqXHR, status, errorThrown ) {
+                $("p").append("\nIncoming text: " + jqXHR.responseText);
+                $("p").append("\nStatus: " + status);
+                $("p").append("\nFailed: " + errorThrown);
+            })
+        });
+    });
+    </script>
+</head>
+<body>
+<p>Result</p>
+<button>Get External Content</button>
+</body>
+</html>
